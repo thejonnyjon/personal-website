@@ -1,28 +1,97 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Jun Wei Lim</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jun Wei Lim</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <div class="container">
     <header>
-      <h1>Lim Jun Wei</h1>
-      <p>Welcome to my personal website</p>
+        <div class="header-content">
+            <a href="/" class="logo">JUN WEI LIM</a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="resume/">Resume</a></li>
+                    <li><a href="blog/">Blog</a></li>
+                    <li><a href="projects/">Projects</a></li>
+                    <li><a href="contact/">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
-    
-    <nav class="main-nav">
-      <a href="resume/" class="nav-card">
-        <h3>📄 Resume</h3>
-        <p>View my professional experience and skills</p>
-      </a>
-      
-      <a href="blog/" class="nav-card">
-        <h3>✍️ Blog</h3>
-        <p>Read my thoughts and technical posts</p>
-      </a>
-    </nav>
-  </div>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Jun Wei Lim</h1>
+                <p>Software Engineer & Creative Thinker</p>
+                
+                <div class="navigation-grid">
+                    <a href="resume/" class="nav-card">
+                        <span class="nav-card-icon">📄</span>
+                        <h3>Resume</h3>
+                        <p>Explore my professional journey, skills, and experience in software development</p>
+                    </a>
+                    
+                    <a href="blog/" class="nav-card">
+                        <span class="nav-card-icon">✍️</span>
+                        <h3>Blog</h3>
+                        <p>Read my thoughts on technology, development, and creative problem-solving</p>
+                    </a>
+                    
+                    <a href="projects/" class="nav-card">
+                        <span class="nav-card-icon">🚀</span>
+                        <h3>Projects</h3>
+                        <p>Discover the applications and tools I've built to solve real-world problems</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Smooth scrolling and header effects
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(0, 0, 0, 0.95)';
+            } else {
+                header.style.background = 'rgba(0, 0, 0, 0.9)';
+            }
+        });
+
+        // Add subtle parallax effect to hero
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+
+        // Add intersection observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe navigation cards
+        document.querySelectorAll('.nav-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            observer.observe(card);
+        });
+    </script>
 </body>
 </html>
